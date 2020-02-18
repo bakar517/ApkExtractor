@@ -4,15 +4,19 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
+
     defaultConfig {
         applicationId "com.warlox.apkextractor"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.version_code
+        versionName build_versions.version_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -25,12 +29,29 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation deps.support.kotlin_stdlib_jdk
+    implementation deps.support.appcompat
+    implementation deps.support.core_ktx
+    implementation deps.support.constraintlayout
+    implementation deps.support.design
+
+    //lifecycle
+    implementation deps.arch.lifecycle.lifecycle_ext
+    kapt deps.arch.lifecycle.compiler
+
+    //rxJava
+    implementation deps.reactivex.rxjava
+    implementation deps.reactivex.rxandroid
+
+    //dagger
+    implementation deps.dagger.dagger
+    implementation deps.dagger.dagger_android
+    implementation deps.dagger.dagger_android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.compiler_android
+
+    testImplementation deps.unittest.junit
+    androidTestImplementation deps.support.test.androidx_test_junit
+    androidTestImplementation deps.support.test.espresso
+
 }
