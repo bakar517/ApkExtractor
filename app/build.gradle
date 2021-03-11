@@ -25,6 +25,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -42,6 +51,9 @@ dependencies {
     //rxJava
     implementation deps.reactivex.rxjava
     implementation deps.reactivex.rxandroid
+
+    //shimmer animation
+    implementation deps.facebook.animation.shimmer
 
     //dagger
     implementation deps.dagger.dagger

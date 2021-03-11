@@ -1,4 +1,35 @@
 <resources>
     <string name="app_name">ApkExtractor</string>
-    <string name="action_settings">Settings</string>
+    <string name="settings">Settings</string>
+    <string name="save_path">Saved Path</string>
+    <string name="apk_format">APK Format</string>
+    <string name="rate_us">Rate us</string>
+    <string name="properties">Properties</string>
+    <string name="version_code">version code</string>
+    <string name="sdk">SDK</string>
+    <string name="min">Min:\u0020</string>
+    <string name="target">Target:\u0020</string>
+    <string name="signature">Signature</string>
+    <string name="time">Time</string>
+    <string name="install_colon">install:</string>
+    <string name="update_colon">update:</string>
+    <string name="installer_package">Installer Package</string>
+    <string name="more_info">More Info</string>
+    <string name="meta_data">Meta Data</string>
+    <string name="permissions">Permissions</string>
+    <string name="activities">Activities</string>
+    <string name="providers">Providers</string>
+    <string name="receivers">Receivers</string>
+    <string name="directories">Directories</string>
+    <string name="shared_libraries">Shared Libraries</string>
+    <string name="native_libraries">Native Libraries</string>
+    <string name="other_properties">Other properties</string>
+
+    <string name="app_details">App Details</string>
+
+    <string name="name">Name</string>
+    <string name="_package">Package</string>
+    <string name="version_name">Version Name</string>
+    <string name="copied_to_clipboard">Copied to clipboard</string>
+
 </resources>

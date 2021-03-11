@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="applicationModel"
+            type="com.warlox.apkextractor.data.model.ApplicationModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:padding="@dimen/padding_normal">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:src="@{applicationModel.icon}"
+            android:id="@+id/appIconView"
+            android:layout_width="@dimen/application_icon_width"
+            android:layout_height="@dimen/application_icon_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:text="@{applicationModel.appName}"
+            android:id="@+id/appNameView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_normal"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintStart_toEndOf="@+id/appIconView"
+            app:layout_constraintTop_toTopOf="@+id/appIconView"
+            app:layout_constraintBottom_toBottomOf="@+id/appIconView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
