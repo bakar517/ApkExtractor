@@ -63,6 +63,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     //app libs
     implementation(AppDependencies.appLibraries)
+    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     kapt(AppDependencies.kapt)
     //test libs
     testImplementation(AppDependencies.testLibraries)
