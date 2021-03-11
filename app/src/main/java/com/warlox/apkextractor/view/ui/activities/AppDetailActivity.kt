@@ -42,7 +42,7 @@ class AppDetailActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_app_detail)
         setSupportActionBar(binding.toolbar)
 
-        val packageName = intent.getStringExtra(EXTRAS_PACKAGE_NAME)
+        val packageName = intent.getStringExtra(EXTRAS_PACKAGE_NAME)!!
 
         setUpViewModel(packageName)
 
