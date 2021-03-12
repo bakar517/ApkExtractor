@@ -12,6 +12,7 @@ object Versions {
     const val cardView = "1.0.0"
 
     const val lifecycle_version = "2.3.0"
+    const val lifecycle_extensions = "2.2.0"
     const val arch_version = "2.1.0"
 
     const val materialDesign = "1.3.0"

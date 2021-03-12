@@ -29,6 +29,8 @@ object AppDependencies {
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle_version}"
 
     //LiveData
+    private const val lifecycle_extensions =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle_extensions}"
     private const val lifecycleLiveData =
         "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle_version}"
     private const val lifecycleViewModelSavedState =
@@ -75,6 +77,7 @@ object AppDependencies {
         add(timber)
         add(intuit)
         add(dexter)
+        add(lifecycle_extensions)
         add(lifecycleViewModelSavedState)
         add(lifecycleLiveData)
         add(lifecycleViewModel)
