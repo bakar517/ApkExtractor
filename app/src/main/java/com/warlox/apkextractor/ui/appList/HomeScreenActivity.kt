@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.ui.activities;
+package com.warlox.apkextractor.ui.appList;
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -17,7 +16,8 @@ import com.warlox.apkextractor.databinding.ActivityHomeScreenBinding
 import com.warlox.apkextractor.view.MyViewModelFactory
 import com.warlox.apkextractor.view.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.view.callback.ApplicationRecycleViewItemClick
-import com.warlox.apkextractor.view.viewmodel.HomeScreenViewModel
+import com.warlox.apkextractor.view.ui.activities.AppDetailActivity
+import com.warlox.apkextractor.view.ui.activities.SettingScreenActivity
 
 class HomeScreenActivity: AppCompatActivity(), ApplicationRecycleViewItemClick {
 
@@ -25,7 +25,7 @@ class HomeScreenActivity: AppCompatActivity(), ApplicationRecycleViewItemClick {
 
     lateinit var applicationListAdapter: ApplicationListAdapter
 
-    lateinit var viewModel:HomeScreenViewModel
+    lateinit var viewModel: HomeScreenViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

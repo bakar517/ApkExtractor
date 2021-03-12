@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.viewmodel
+package com.warlox.apkextractor.ui.appList
 
 import android.app.Application
 import android.content.Context
