@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.pm.ApplicationInfo
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.warlox.apkextractor.view.viewmodel.AppDetailViewModel
+import com.warlox.apkextractor.ui.appDetail.AppDetailViewModel
 import com.warlox.apkextractor.ui.appList.AppsListViewModel
 
 class MyViewModelFactory(private val application: Application, private val applicationInfo: ApplicationInfo?): ViewModelProvider.Factory {

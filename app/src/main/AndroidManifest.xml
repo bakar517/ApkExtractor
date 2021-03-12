@@ -26,7 +26,7 @@
             android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.ui.activities.AppDetailActivity"
+            android:name=".ui.appDetail.AppDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
