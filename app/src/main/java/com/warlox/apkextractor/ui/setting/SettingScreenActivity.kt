@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.ui.activities
+package com.warlox.apkextractor.ui.setting
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

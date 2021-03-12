@@ -15,7 +15,7 @@ import com.warlox.apkextractor.view.MyViewModelFactory
 import com.warlox.apkextractor.view.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.view.callback.ApplicationRecycleViewItemClick
 import com.warlox.apkextractor.ui.appDetail.AppDetailActivity
-import com.warlox.apkextractor.view.ui.activities.SettingScreenActivity
+import com.warlox.apkextractor.ui.setting.SettingScreenActivity
 
 class AppsListActivity : AppCompatActivity(), ApplicationRecycleViewItemClick {
 
