@@ -6,11 +6,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.warlox.apkextractor.R
 import com.warlox.apkextractor.databinding.ActivitySettingScreenBinding
-import com.warlox.apkextractor.view.viewmodel.SettingScreenViewModel
 
 class SettingScreenActivity:AppCompatActivity() {
-    lateinit var binding:ActivitySettingScreenBinding
-    lateinit var viewModel:SettingScreenViewModel
+    lateinit var binding: ActivitySettingScreenBinding
+    lateinit var viewModel: SettingScreenViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
