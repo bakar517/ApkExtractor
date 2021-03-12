@@ -1,64 +1,49 @@
 package com.warlox.apkextractor.ui.appList
 
-import android.app.Application
-import android.content.Context
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.warlox.apkextractor.data.model.ApplicationModel
-import com.warlox.apkextractor.util.ApplicationUtil
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import com.warlox.apkextractor.repo.AppsProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class AppsListViewModel(application: Application) : AndroidViewModel(application){
-
-    private val compositeDisposable = CompositeDisposable()
+class AppsListViewModel @Inject constructor(private val appsProvider: AppsProvider)
+    : ViewModel() {
 
     private val _listStatus = MutableLiveData<String>()
-    val listStatus:LiveData<String>
+    val listStatus: LiveData<String>
         get() = _listStatus
 
     private val _isListItemAtLeastOne = MutableLiveData<Boolean>()
-    val isListItemAtLeastOne:LiveData<Boolean>
+    val isListItemAtLeastOne: LiveData<Boolean>
         get() = _isListItemAtLeastOne
 
 
     private val _applicationModelList = MutableLiveData<List<ApplicationModel>>()
-    val applicationModelList:LiveData<List<ApplicationModel>>
+
+    val applicationModelList: LiveData<List<ApplicationModel>>
         get() = _applicationModelList
 
     private val _isApplicationLoading = MutableLiveData<Boolean>()
-    val isApplicationLoading:LiveData<Boolean>
+    val isApplicationLoading: LiveData<Boolean>
         get() = _isApplicationLoading
 
-    private var applicationContext: Context = application.applicationContext
 
     init {
         loadApplications()
     }
 
-    private fun loadApplications(){
+    private fun loadApplications() {
         _isApplicationLoading.value = true
-
-        val disposable = ApplicationUtil.getListOfUserInstalledApplication(applicationContext)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _isApplicationLoading.value = false
-                _applicationModelList.value = it
-            },{
-                _isApplicationLoading.value = false
-            })
-        compositeDisposable.add(disposable)
+        viewModelScope.launch(Dispatchers.IO) {
+            _applicationModelList.postValue(appsProvider.getListOfAllApplication())
+            _isApplicationLoading.postValue(false)
+        }
 
     }
 
-    override fun onCleared() {
-
-        compositeDisposable.clear()
-        super.onCleared()
-    }
 }

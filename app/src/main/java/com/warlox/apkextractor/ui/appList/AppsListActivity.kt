@@ -4,45 +4,45 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
 import com.warlox.apkextractor.data.model.ApplicationModel
 import com.warlox.apkextractor.databinding.ActivityAppsListBinding
 import com.warlox.apkextractor.ui.appDetail.AppDetailActivity
 import com.warlox.apkextractor.ui.appList.adapter.ApplicationListAdapter
+import com.warlox.apkextractor.ui.base.BaseActivity
 import com.warlox.apkextractor.ui.setting.SettingScreenActivity
-import com.warlox.apkextractor.view.MyViewModelFactory
+import javax.inject.Inject
 
-class AppsListActivity : AppCompatActivity(), ApplicationRecycleViewItemClick {
+class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel>(),
+        ApplicationRecycleViewItemClick {
 
-    lateinit var binding: ActivityAppsListBinding
+    override fun getLayoutId() = R.layout.activity_apps_list
+
+    override fun getViewModel(): AppsListViewModel {
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AppsListViewModel::class.java)
+        return viewModel
+    }
+
+    override fun getBindingVariable() = BR.viewHolder
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private lateinit var viewModel: AppsListViewModel
 
     lateinit var applicationListAdapter: ApplicationListAdapter
 
-    lateinit var viewModel: AppsListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_apps_list)
-        setSupportActionBar(binding.toolbar)
 
-        setUpViewModel()
+        setSupportActionBar(binding.toolbar)
 
         initAdapter()
         setUpAdapter()
         startObservingForProgress()
-    }
-
-    private fun setUpViewModel() {
-        val factory = MyViewModelFactory(application)
-//        viewModel = ViewModelProviders.of(this).get(HomeScreenViewModel::class.java)
-        viewModel = ViewModelProviders.of(this, factory).get(AppsListViewModel::class.java)
-        binding.viewHolder = viewModel
-        binding.lifecycleOwner = this
-
     }
 
     private fun initAdapter() {
@@ -91,5 +91,4 @@ class AppsListActivity : AppCompatActivity(), ApplicationRecycleViewItemClick {
         val intent = AppDetailActivity.getStarterIntent(this@AppsListActivity, applicationModel.appBundleId)
         startActivity(intent)
     }
-
 }
