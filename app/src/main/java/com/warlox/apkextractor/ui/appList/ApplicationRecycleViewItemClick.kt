@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.callback
+package com.warlox.apkextractor.ui.appList
 
 import com.warlox.apkextractor.data.model.ApplicationModel
 
