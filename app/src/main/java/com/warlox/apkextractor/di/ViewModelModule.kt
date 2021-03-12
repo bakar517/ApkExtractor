@@ -3,7 +3,7 @@ package com.warlox.apkextractor.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.warlox.apkextractor.ui.appList.AppsListViewModel
-import com.warlox.apkextractor.ui.setting.SettingScreenViewModel
+import com.warlox.apkextractor.ui.setting.SettingViewModel
 import com.warlox.apkextractor.viewmodel.AppExtractorViewModelFactory
 import dagger.Binds
 import dagger.Module
@@ -21,8 +21,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SettingScreenViewModel::class)
-    abstract fun bindSettingViewModel(settingViewModel: SettingScreenViewModel): ViewModel
+    @ViewModelKey(SettingViewModel::class)
+    abstract fun bindSettingViewModel(settingViewModel: SettingViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: AppExtractorViewModelFactory):

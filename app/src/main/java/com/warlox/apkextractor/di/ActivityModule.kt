@@ -1,7 +1,7 @@
 package com.warlox.apkextractor.di
 
 import com.warlox.apkextractor.ui.appList.AppsListActivity
-import com.warlox.apkextractor.ui.setting.SettingScreenActivity
+import com.warlox.apkextractor.ui.setting.SettingActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,6 +14,6 @@ abstract class ActivityModule {
     abstract fun contributeAppsListActivity(): AppsListActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeSettingScreenActivity(): SettingScreenActivity
+    abstract fun contributeSettingActivity(): SettingActivity
 
 }

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.warlox.apkextractor.ui.setting.SettingScreenViewModel" />
+            type="com.warlox.apkextractor.ui.setting.SettingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

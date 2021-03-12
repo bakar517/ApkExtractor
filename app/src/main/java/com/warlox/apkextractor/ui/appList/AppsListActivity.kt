@@ -13,7 +13,7 @@ import com.warlox.apkextractor.databinding.ActivityAppsListBinding
 import com.warlox.apkextractor.ui.appDetail.AppDetailActivity
 import com.warlox.apkextractor.ui.appList.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.ui.base.BaseActivity
-import com.warlox.apkextractor.ui.setting.SettingScreenActivity
+import com.warlox.apkextractor.ui.setting.SettingActivity
 import javax.inject.Inject
 
 class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel>(),
@@ -76,7 +76,7 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_settings) {
-            startActivity(Intent(this, SettingScreenActivity::class.java))
+            startActivity(Intent(this, SettingActivity::class.java))
             return true
         }
         return super.onOptionsItemSelected(item)
