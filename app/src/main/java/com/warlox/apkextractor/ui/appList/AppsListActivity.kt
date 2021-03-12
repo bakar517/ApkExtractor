@@ -12,9 +12,9 @@ import com.warlox.apkextractor.R
 import com.warlox.apkextractor.data.model.ApplicationModel
 import com.warlox.apkextractor.databinding.ActivityAppsListBinding
 import com.warlox.apkextractor.ui.appDetail.AppDetailActivity
+import com.warlox.apkextractor.ui.appList.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.ui.setting.SettingScreenActivity
 import com.warlox.apkextractor.view.MyViewModelFactory
-import com.warlox.apkextractor.view.adapter.ApplicationListAdapter
 
 class AppsListActivity : AppCompatActivity(), ApplicationRecycleViewItemClick {
 

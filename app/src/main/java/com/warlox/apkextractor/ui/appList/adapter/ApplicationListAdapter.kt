@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.adapter
+package com.warlox.apkextractor.ui.appList.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
