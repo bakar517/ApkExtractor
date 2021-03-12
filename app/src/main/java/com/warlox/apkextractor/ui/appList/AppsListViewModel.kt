@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 
-class HomeScreenViewModel(application: Application) : AndroidViewModel(application){
+class AppsListViewModel(application: Application) : AndroidViewModel(application){
 
     private val compositeDisposable = CompositeDisposable()
 
