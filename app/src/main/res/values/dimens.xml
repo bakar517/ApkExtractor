@@ -1,20 +1,20 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
 
-    <dimen name="padding_small">8dp</dimen>
-    <dimen name="padding_normal">12dp</dimen>
-    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_small">@dimen/_8sdp</dimen>
+    <dimen name="padding_normal">@dimen/_12sdp</dimen>
+    <dimen name="padding_large">@dimen/_24sdp</dimen>
 
-    <dimen name="margin_normal">16dp</dimen>
-    <dimen name="margin_small">8dp</dimen>
-    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_normal">@dimen/_16sdp</dimen>
+    <dimen name="margin_small">@dimen/_8sdp</dimen>
+    <dimen name="margin_large">@dimen/_32sdp</dimen>
 
     <dimen name="application_icon_width">48dp</dimen>
     <dimen name="application_icon_height">48dp</dimen>
 
-    <dimen name="placeholder_text_height">12dp</dimen>
+    <dimen name="placeholder_text_height">@dimen/_12sdp</dimen>
 
-    <dimen name="spacing_normal">8dp</dimen>
-    <dimen name="spacing_micro">4dp</dimen>
+    <dimen name="spacing_normal">@dimen/_8sdp</dimen>
+    <dimen name="spacing_micro">@dimen/_4sdp</dimen>
 
 </resources>
