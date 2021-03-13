@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
@@ -46,14 +45,14 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
     private fun setUpAdapter() {
         binding.applicationList.adapter = applicationListAdapter
 
-        viewModel.applicationModelList.observe(this, Observer {
+        viewModel.applicationModelList.observe(this, {
             applicationListAdapter.submitList(it)
         })
 
     }
 
     private fun startObservingForProgress() {
-        viewModel.isApplicationLoading.observe(this, Observer {
+        viewModel.isApplicationLoading.observe(this, {
             if (it) {
                 binding.shimmerFrameLayout.startShimmer()
             } else {
