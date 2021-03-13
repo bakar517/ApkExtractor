@@ -10,8 +10,10 @@ import com.warlox.apkextractor.databinding.ViewListApplicationBinding
 import com.warlox.apkextractor.ui.appList.ApplicationRecycleViewItemClick
 import com.warlox.apkextractor.ui.appList.view_holder.ViewHolder
 import com.warlox.apkextractor.util.ApplicationModelDiffUtil
+import javax.inject.Inject
 
-class ApplicationListAdapter(private val listener: ApplicationRecycleViewItemClick) :
+class ApplicationListAdapter @Inject constructor(
+        private val listener: ApplicationRecycleViewItemClick) :
         ListAdapter<ApplicationModel, ViewHolder>(ApplicationModelDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -32,19 +32,15 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: AppsListViewModel
 
+    @Inject
     lateinit var applicationListAdapter: ApplicationListAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initAdapter()
         setUpAdapter()
         startObservingForProgress()
-    }
-
-    private fun initAdapter() {
-        applicationListAdapter = ApplicationListAdapter(this)
     }
 
     private fun setUpAdapter() {
