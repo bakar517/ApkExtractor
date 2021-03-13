@@ -90,27 +90,23 @@ class AppDetailViewModel @Inject constructor(
         get() = _appSharedLibraries
 
     private val _appNativeLibraries = MutableLiveData<MutableList<String>>()
-    val appNativeLibraries:LiveData<MutableList<String>>
+    val appNativeLibraries: LiveData<MutableList<String>>
         get() = _appNativeLibraries
 
     private val _appOtherProperties = MutableLiveData<MutableList<String>>()
     val appOtherProperties: LiveData<MutableList<String>>
         get() = _appOtherProperties
 
-    private val _goToAppSetting = MutableLiveData<Boolean>()
-    val goToAppSetting: LiveData<Boolean>
-        get() = _goToAppSetting
-
     private val onCopyToClipboard = SingleMutableLiveEvent<Boolean>()
     private val onLaunchApplication = SingleMutableLiveEvent<Boolean>()
-
-    private val _shareApplication = MutableLiveData<Boolean>()
-    val shareApplication: LiveData<Boolean>
-        get() = _shareApplication
+    private val goToAppSetting = SingleMutableLiveEvent<Boolean>()
+    private val onAppShare = SingleMutableLiveEvent<Boolean>()
 
 
     internal fun onCopyToClipboardClick() = onCopyToClipboard
     internal fun onLaunchApplication() = onLaunchApplication
+    internal fun onGoToAppSetting() = goToAppSetting
+    internal fun onShareClick() = onAppShare
 
     init {
         loadBasicPropertiesOfApp()
@@ -288,8 +284,8 @@ class AppDetailViewModel @Inject constructor(
         onLaunchApplication.value = true
     }
 
-    fun goToAppSetting() {
-        _goToAppSetting.value = true
+    fun onAppSettingClick() {
+        goToAppSetting.value = true
 
     }
 
@@ -297,8 +293,8 @@ class AppDetailViewModel @Inject constructor(
         onCopyToClipboard.value = true
     }
 
-    fun shareApplication() {
-        _shareApplication.value = true
+    fun onAppShareClick() {
+        onAppShare.value = true
 
     }
 }

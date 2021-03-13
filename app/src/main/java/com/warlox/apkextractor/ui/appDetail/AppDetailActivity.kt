@@ -1,9 +1,6 @@
 package com.warlox.apkextractor.ui.appDetail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import androidx.lifecycle.ViewModelProvider
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
@@ -12,6 +9,7 @@ import com.warlox.apkextractor.ui.appDetail.di.ExtraParamsViewModelFactory
 import com.warlox.apkextractor.ui.base.BaseActivity
 import com.warlox.apkextractor.util.ApplicationUtil
 import com.warlox.apkextractor.util.extension.copyTextToClip
+import com.warlox.apkextractor.util.extension.goToSetting
 
 
 class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewModel>() {
@@ -50,18 +48,15 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
             startActivity(intent)
         })
 
-        viewModel.goToAppSetting.observe(this, {
-            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-            intent.data = Uri.fromParts("package", viewModel.applicationInfo.packageName, null)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
+        viewModel.onGoToAppSetting().observe(this, {
+            goToSetting(viewModel.applicationInfo.packageName)
         })
         viewModel.onCopyToClipboardClick().observe(this, {
             val value = ApplicationUtil.getApplicationInfoForClip(applicationContext, viewModel.applicationInfo)
             copyTextToClip(value, showToast = true)
         })
 
-        viewModel.shareApplication.observe(this, {
+        viewModel.onShareClick().observe(this, {
 
         })
 
