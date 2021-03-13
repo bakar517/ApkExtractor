@@ -1,6 +1,5 @@
 package com.warlox.apkextractor.ui.setting
 
-import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
@@ -23,11 +22,5 @@ class SettingActivity : BaseActivity<ActivitySettingBinding, SettingViewModel>()
     }
 
     override fun getBindingVariable() = BR.viewModel
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setSupportActionBar(binding.toolbar)
-    }
 
 }
