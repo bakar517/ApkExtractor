@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,10 +20,8 @@
             android:id="@+id/applicationList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="8dp"
-            android:paddingTop="8dp"
-            android:paddingEnd="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/view_list_application"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -50,23 +48,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:shimmer_duration="800">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <include layout="@layout/view_list_application_animation" />
-
-                <include layout="@layout/view_list_application_animation" />
-
-                <include layout="@layout/view_list_application_animation" />
-
-                <include layout="@layout/view_list_application_animation" />
-
-                <include layout="@layout/view_list_application_animation" />
-
-                <include layout="@layout/view_list_application_animation" />
-            </LinearLayout>
+            <include layout="@layout/view_shimmer" />
         </com.facebook.shimmer.ShimmerFrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
