@@ -1,6 +1,3 @@
 package com.warlox.apkextractor.util
 
-class IntentParams {
-    var key: String? = ""
-    var value: String? = ""
-}
+class IntentParams(val key: String, val value: String)
