@@ -51,7 +51,7 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
         binding.applicationList.adapter = applicationListAdapter
 
         viewModel.applicationModelList.observe(this, Observer {
-            applicationListAdapter.setApplicationList(it)
+            applicationListAdapter.submitList(it)
         })
 
     }
@@ -85,7 +85,7 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
 
     }
 
-    override fun onApplicationListItemClick(applicationModel: ApplicationModel) {
+    override fun onItemClick(applicationModel: ApplicationModel) {
         val intent = AppDetailActivity.getStarterIntent(this@AppsListActivity, applicationModel.appBundleId)
         startActivity(intent)
     }
