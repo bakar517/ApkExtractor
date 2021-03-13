@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
 import com.warlox.apkextractor.data.model.ApplicationModel
@@ -43,8 +44,10 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
     }
 
     private fun setUpAdapter() {
-        binding.applicationList.adapter = applicationListAdapter
-
+        binding.applicationList.apply {
+            layoutManager = LinearLayoutManager(this@AppsListActivity)
+            adapter = applicationListAdapter
+        }
         viewModel.applicationModelList.observe(this, {
             applicationListAdapter.submitList(it)
         })
