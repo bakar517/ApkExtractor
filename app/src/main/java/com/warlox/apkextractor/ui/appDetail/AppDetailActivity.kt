@@ -1,6 +1,5 @@
 package com.warlox.apkextractor.ui.appDetail
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -22,12 +21,6 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
 
     companion object {
         const val EXTRAS_PACKAGE_NAME = "package_name"
-
-        fun getStarterIntent(context: Context, packageName: String): Intent {
-            val intent = Intent(context, AppDetailActivity::class.java)
-            intent.putExtra(EXTRAS_PACKAGE_NAME, packageName)
-            return intent
-        }
     }
 
 
