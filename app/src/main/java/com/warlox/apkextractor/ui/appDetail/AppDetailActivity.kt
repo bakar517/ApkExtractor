@@ -47,8 +47,6 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(binding.toolbar)
-
         observeViewModelProperties()
     }
 

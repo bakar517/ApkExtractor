@@ -38,8 +38,6 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setSupportActionBar(binding.toolbar)
-
         initAdapter()
         setUpAdapter()
         startObservingForProgress()

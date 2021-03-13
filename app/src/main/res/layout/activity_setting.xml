@@ -11,90 +11,55 @@
             type="com.warlox.apkextractor.ui.setting.SettingViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/settings_scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbarLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/settings_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical"
+            android:padding="@dimen/padding_normal">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                app:title="@string/settings" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/settings_scroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbarLayout">
-
-            <LinearLayout
-                android:id="@+id/settings_layout"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/settings_saved_path"
+                style="@style/Widget.Settings.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_normal">
-
-                <TextView
-                    android:id="@+id/settings_saved_path"
-                    style="@style/Widget.Settings.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:text="@string/save_path"/>
+                android:focusable="true"
+                android:text="@string/save_path"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-                <TextView
-                    android:id="@+id/settings_apk_format"
-                    style="@style/Widget.Settings.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:text="@string/apk_format"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/settings_apk_format"
+                style="@style/Widget.Settings.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:text="@string/apk_format"
+                app:layout_constraintTop_toBottomOf="@+id/settings_saved_path" />
 
 
-                <TextView
-                    android:id="@+id/settings_rate_us"
-                    style="@style/Widget.Settings.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="true"
-                    android:text="@string/rate_us"/>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/settings_rate_us"
+                style="@style/Widget.Settings.Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:text="@string/rate_us"
+                app:layout_constraintTop_toBottomOf="@+id/settings_apk_format" />
 
-<!--                <TextView-->
-<!--                    android:id="@+id/version_build_number"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="start|center_vertical"-->
-<!--                    android:minHeight="48dp"-->
-<!--                    android:padding="@dimen/margin_normal"-->
-<!--                    android:textAppearance="?textAppearanceBody2"-->
-<!--                    app:versionName="@{BuildConfig.VERSION_NAME}" />-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.core.widget.NestedScrollView>
 
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
