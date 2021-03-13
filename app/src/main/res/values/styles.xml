@@ -9,11 +9,6 @@
     </style>
 
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-
     <style name="Widget.Settings.Button">
         <item name="android:background">?selectableItemBackground</item>
         <item name="android:gravity">start|center_vertical</item>

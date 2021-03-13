@@ -4,621 +4,599 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewHolder"
             type="com.warlox.apkextractor.ui.appDetail.AppDetailViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_margin="@dimen/margin_normal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topViewLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_normal">
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/topViewLayout"
-                    android:layout_width="match_parent"
+                    android:id="@+id/layoutApplicationInfo"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="visible"
-                    >
+                    app:layout_constraintTop_toTopOf="parent">
 
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationInfo"
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/appIconView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@{viewHolder.appIconDrawable}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/appIconView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:src="@{viewHolder.appIconDrawable}" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.appName}"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/appIconView" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationBundleId"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.applicationInfo.packageName}"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/lblApplicationName" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationVersionCode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.appVersionName}"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/lblApplicationBundleId" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.appName}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInfo">
+                        app:layout_constraintTop_toBottomOf="@+id/appIconView" />
 
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnOpenApp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_small"
-                            android:background="@null"
-                            app:srcCompat="@drawable/ic_launch_black"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btnAppInfo"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:onClick="@{() -> viewHolder.launchApplication()}"
-                            />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationBundleId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.applicationInfo.packageName}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationName" />
 
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnAppInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_small"
-                            android:background="@null"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btnCopiedToClip"
-                            app:layout_constraintStart_toEndOf="@+id/btnOpenApp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/ic_info_black"
-                            android:onClick="@{() -> viewHolder.goToAppSetting()}" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnCopiedToClip"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_small"
-                            android:background="@null"
-                            app:srcCompat="@drawable/ic_content_copy_black"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/btnShareApp"
-                            app:layout_constraintStart_toEndOf="@+id/btnAppInfo"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:onClick="@{() -> viewHolder.copyApplicationDetail()}" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnShareApp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_small"
-                            android:background="@null"
-                            app:srcCompat="@drawable/ic_share_black"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/btnCopiedToClip"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:onClick="@{() -> viewHolder.shareApplication()}"
-                            />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationVersionCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.appVersionName}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationBundleId" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/topViewLayout"
-                    android:paddingBottom="@dimen/margin_large"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInfo">
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblProperties"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnOpenApp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@string/properties"
+                        android:layout_margin="@dimen/margin_small"
+                        android:background="@null"
+                        android:onClick="@{() -> viewHolder.launchApplication()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnAppInfo"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        />
+                        app:srcCompat="@drawable/ic_launch_black" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationVersionCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblProperties"
-
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/_lblApplicationVersionName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/version_code"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationVersionName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.appVersionCode}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/_lblApplicationVersionName" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationSDK"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationVersionCode"
-
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/_lblApplicationSDK"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/sdk"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationMinSDK"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{@string/min + viewHolder.appMinVersion+`, `}"
-                            android:visibility="visible"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblApplicationTargetSDK" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationTargetSDK"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{@string/target+viewHolder.appTargetVersion}"
-                            app:layout_constraintStart_toEndOf="@+id/lblApplicationMinSDK"
-                            app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSDK" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationSignature"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSDK"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/_lblApplicationSignature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/signature"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationSignature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.appSignature}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSignature" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationTime"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSignature"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationInstallTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/time"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblAppInstallTime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{@string/install_colon + viewHolder.appInstallationTime}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallTime" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationUpdate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{@string/update_colon + viewHolder.lastModificationTimeOfApp}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/lblAppInstallTime" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/layoutApplicationInstallerPackage"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationTime"
-
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/_lblApplicationInstallerPackage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/installer_package"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lblApplicationInstallerPackage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/margin_small"
-                            android:text="@{viewHolder.appInstallerVendor}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/_lblApplicationInstallerPackage" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblMoreInfo"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnAppInfo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@string/more_info"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInstallerPackage"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        />
+                        android:layout_margin="@dimen/margin_small"
+                        android:background="@null"
+                        android:onClick="@{() -> viewHolder.goToAppSetting()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnCopiedToClip"
+                        app:layout_constraintStart_toEndOf="@+id/btnOpenApp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_info_black" />
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnCopiedToClip"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppMetaData"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblMoreInfo"
-                        android:visibility="@{viewHolder.appMetaData.size()>0?View.VISIBLE:View.GONE}"
-                        >
+                        android:layout_margin="@dimen/margin_small"
+                        android:background="@null"
+                        android:onClick="@{() -> viewHolder.copyApplicationDetail()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/btnShareApp"
+                        app:layout_constraintStart_toEndOf="@+id/btnAppInfo"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_content_copy_black" />
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblMetaData"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/meta_data +` (`+viewHolder.appMetaData.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/btnMetaDataMore"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblMetaData"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblMetaData"
-                            />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnShareApp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppPermission"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppMetaData"
-                        android:visibility="@{viewHolder.appPermissions.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblAppPermission"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/permissions +` (`+viewHolder.appPermissions.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnPermissionMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblAppPermission"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblAppPermission" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppActivities"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppPermission"
-                        android:visibility="@{viewHolder.appActivities.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblAppActivities"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/activities +` (`+viewHolder.appActivities.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnActivitiesMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblAppActivities"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblAppActivities" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppProviders"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppActivities"
-                        android:visibility="@{viewHolder.appProviders.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblAppProvider"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/providers +` (`+viewHolder.appProviders.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnProviderMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblAppProvider"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblAppProvider" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppReceivers"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppProviders"
-                        android:visibility="@{viewHolder.appReceivers.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblAppReceivers"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/receivers +` (`+viewHolder.appReceivers.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnAppReceiverMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblAppReceivers"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblAppReceivers" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppDirectories"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppReceivers"
-                        android:visibility="@{viewHolder.appDirectories.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblDirectories"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/directories +` (`+viewHolder.appDirectories.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnDirectoriesMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblDirectories"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblDirectories" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppSharedLibraries"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppDirectories"
-                        android:visibility="@{viewHolder.appSharedLibraries.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblShareLibraries"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/shared_libraries +` (`+viewHolder.appSharedLibraries.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnShareLibrariesMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblShareLibraries"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblShareLibraries" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppNativeLibraries"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppSharedLibraries"
-                        android:visibility="@{viewHolder.appNativeLibraries.size()>0?View.VISIBLE:View.GONE}"
-                        >
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblNativeLibraries"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@{@string/native_libraries +` (`+viewHolder.appNativeLibraries.size()+`)`}"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnNativeLibraryMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblNativeLibraries"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblNativeLibraries" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/layoutAppOtherProperties"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/layoutAppNativeLibraries"
-                        android:layout_marginBottom="@dimen/margin_normal">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/lblOtherProperties"
-                            android:layout_marginTop="@dimen/margin_normal"
-                            android:text="@string/other_properties"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatImageButton
-                            android:id="@+id/btnOtherPropertiesMore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:src="@drawable/ic_next_black"
-                            app:layout_constraintBottom_toBottomOf="@+id/lblOtherProperties"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/lblOtherProperties" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        android:layout_margin="@dimen/margin_small"
+                        android:background="@null"
+                        android:onClick="@{() -> viewHolder.shareApplication()}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btnCopiedToClip"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_share_black" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.core.widget.NestedScrollView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/margin_large"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/topViewLayout">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lblProperties"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="@string/properties"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutApplicationVersionCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblProperties"
+
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/_lblApplicationVersionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/version_code"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationVersionName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.appVersionCode}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationVersionName" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutApplicationSDK"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationVersionCode"
+
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/_lblApplicationSDK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/sdk"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationMinSDK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/min + viewHolder.appMinVersion+`, `}"
+                        android:visibility="visible"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblApplicationTargetSDK" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationTargetSDK"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{@string/target+viewHolder.appTargetVersion}"
+                        app:layout_constraintStart_toEndOf="@+id/lblApplicationMinSDK"
+                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSDK" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutApplicationSignature"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSDK">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/_lblApplicationSignature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/signature"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationSignature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.appSignature}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSignature" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutApplicationTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSignature">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationInstallTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblAppInstallTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{@string/install_colon + viewHolder.appInstallationTime}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallTime" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/update_colon + viewHolder.lastModificationTimeOfApp}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/lblAppInstallTime" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutApplicationInstallerPackage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationTime"
+
+                    >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/_lblApplicationInstallerPackage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/installer_package"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblApplicationInstallerPackage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@{viewHolder.appInstallerVendor}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationInstallerPackage" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/lblMoreInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:text="@string/more_info"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInstallerPackage" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppMetaData"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appMetaData.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lblMoreInfo">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblMetaData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/meta_data +` (`+viewHolder.appMetaData.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnMetaDataMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblMetaData"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblMetaData" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppPermission"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appPermissions.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppMetaData">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblAppPermission"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/permissions +` (`+viewHolder.appPermissions.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnPermissionMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblAppPermission"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblAppPermission" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppActivities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appActivities.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppPermission">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblAppActivities"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/activities +` (`+viewHolder.appActivities.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnActivitiesMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblAppActivities"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblAppActivities" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppProviders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appProviders.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppActivities">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblAppProvider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/providers +` (`+viewHolder.appProviders.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnProviderMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblAppProvider"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblAppProvider" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppReceivers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appReceivers.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppProviders">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblAppReceivers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/receivers +` (`+viewHolder.appReceivers.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnAppReceiverMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblAppReceivers"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblAppReceivers" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppDirectories"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appDirectories.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppReceivers">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblDirectories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/directories +` (`+viewHolder.appDirectories.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnDirectoriesMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblDirectories"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblDirectories" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppSharedLibraries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appSharedLibraries.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppDirectories">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblShareLibraries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/shared_libraries +` (`+viewHolder.appSharedLibraries.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnShareLibrariesMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblShareLibraries"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblShareLibraries" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppNativeLibraries"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewHolder.appNativeLibraries.size()>0?View.VISIBLE:View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppSharedLibraries">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblNativeLibraries"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@{@string/native_libraries +` (`+viewHolder.appNativeLibraries.size()+`)`}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnNativeLibraryMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblNativeLibraries"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblNativeLibraries" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutAppOtherProperties"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutAppNativeLibraries">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/lblOtherProperties"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_normal"
+                        android:text="@string/other_properties"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageButton
+                        android:id="@+id/btnOtherPropertiesMore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_next_black"
+                        app:layout_constraintBottom_toBottomOf="@+id/lblOtherProperties"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/lblOtherProperties" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </layout>
