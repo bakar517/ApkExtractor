@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.warlox.apkextractor.ui.SingleMutableLiveEvent
 import com.warlox.apkextractor.util.ApplicationUtil
 import com.warlox.apkextractor.util.DateTimeUtil
 import java.io.File
@@ -93,25 +94,23 @@ class AppDetailViewModel @Inject constructor(
         get() = _appNativeLibraries
 
     private val _appOtherProperties = MutableLiveData<MutableList<String>>()
-    val appOtherProperties:LiveData<MutableList<String>>
+    val appOtherProperties: LiveData<MutableList<String>>
         get() = _appOtherProperties
 
-    private val _launchApplication = MutableLiveData<Boolean>()
-    val launchApplication:LiveData<Boolean>
-        get() = _launchApplication
-
     private val _goToAppSetting = MutableLiveData<Boolean>()
-    val goToAppSetting:LiveData<Boolean>
+    val goToAppSetting: LiveData<Boolean>
         get() = _goToAppSetting
 
-    private val _copyToClipboard = MutableLiveData<Boolean>()
-    val copyToClipboard:LiveData<Boolean>
-        get() = _copyToClipboard
+    private val onCopyToClipboard = SingleMutableLiveEvent<Boolean>()
+    private val onLaunchApplication = SingleMutableLiveEvent<Boolean>()
 
     private val _shareApplication = MutableLiveData<Boolean>()
-    val shareApplication:LiveData<Boolean>
+    val shareApplication: LiveData<Boolean>
         get() = _shareApplication
 
+
+    internal fun onCopyToClipboardClick() = onCopyToClipboard
+    internal fun onLaunchApplication() = onLaunchApplication
 
     init {
         loadBasicPropertiesOfApp()
@@ -278,27 +277,27 @@ class AppDetailViewModel @Inject constructor(
         }
     }
 
-    private fun loadAllOtherPropertiesOfApp(){
+    private fun loadAllOtherPropertiesOfApp() {
         val isLargeHeap = ApplicationUtil.isLargeHeap(applicationInfo)
         val isHardwareAccelerated = ApplicationUtil.isHardwareAccelerated(applicationInfo)
         val isBackupAllowed = ApplicationUtil.isBackupAllowed(applicationInfo)
         val isRLTSupport = ApplicationUtil.isRLTSupport(applicationInfo)
     }
 
-    fun launchApplication(){
-        _launchApplication.value = true
+    fun onLaunchApplicationClick() {
+        onLaunchApplication.value = true
     }
 
-    fun goToAppSetting(){
+    fun goToAppSetting() {
         _goToAppSetting.value = true
 
     }
 
-    fun copyApplicationDetail(){
-        _copyToClipboard.value = true
+    fun onCopyApplicationDetailClick() {
+        onCopyToClipboard.value = true
     }
 
-    fun shareApplication(){
+    fun shareApplication() {
         _shareApplication.value = true
 
     }

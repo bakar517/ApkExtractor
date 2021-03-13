@@ -45,7 +45,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
     }
 
     private fun observeViewModelProperties() {
-        viewModel.launchApplication.observe(this, {
+        viewModel.onLaunchApplication().observe(this, {
             val intent = packageManager.getLaunchIntentForPackage(viewModel.applicationInfo.packageName)
             startActivity(intent)
         })
@@ -56,7 +56,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         })
-        viewModel.copyToClipboard.observe(this, {
+        viewModel.onCopyToClipboardClick().observe(this, {
             val value = ApplicationUtil.getApplicationInfoForClip(applicationContext, viewModel.applicationInfo)
             copyTextToClip(value, showToast = true)
         })
