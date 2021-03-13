@@ -2,6 +2,7 @@ package com.warlox.apkextractor.di
 
 import android.app.Application
 import android.content.Context
+import android.content.pm.PackageManager
 import com.warlox.apkextractor.repo.AppsProvider
 import com.warlox.apkextractor.repo.AppsProviderImp
 import dagger.Module
@@ -19,4 +20,7 @@ class AppModule {
 
     @Provides
     fun getAppsProvider(appsProviderImp: AppsProviderImp): AppsProvider = appsProviderImp
+
+    @Provides
+    fun providePackageManager(context: Context): PackageManager = context.packageManager
 }
