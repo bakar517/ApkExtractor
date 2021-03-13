@@ -15,6 +15,8 @@ import com.warlox.apkextractor.ui.appDetail.AppDetailActivity
 import com.warlox.apkextractor.ui.appList.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.ui.base.BaseActivity
 import com.warlox.apkextractor.ui.setting.SettingActivity
+import com.warlox.apkextractor.util.IntentParams
+import com.warlox.apkextractor.util.extension.navigate
 import javax.inject.Inject
 
 
@@ -80,15 +82,13 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
             return true
         }
         return super.onOptionsItemSelected(item)
-//        return when (item.itemId) {
-//            R.id.action_settings -> true
-//            else -> super.onOptionsItemSelected(item)
-//        }
-
     }
 
     override fun onItemClick(applicationModel: ApplicationModel) {
-        val intent = AppDetailActivity.getStarterIntent(this@AppsListActivity, applicationModel.appBundleId)
-        startActivity(intent)
+        navigate<AppDetailActivity>(
+                listOf(
+                        IntentParams(
+                                key = AppDetailActivity.EXTRAS_PACKAGE_NAME,
+                                value = applicationModel.appBundleId)))
     }
 }
