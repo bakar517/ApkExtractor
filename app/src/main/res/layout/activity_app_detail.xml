@@ -21,139 +21,111 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/topViewLayout"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appIconView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
+                android:src="@{viewHolder.appIconDrawable}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/isSystemOrDebugApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/appIconView"
+                app:layout_constraintEnd_toEndOf="@+id/appIconView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{viewHolder.appName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appIconView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationBundleId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{viewHolder.applicationInfo.packageName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationName" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationVersionCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@{viewHolder.appVersionName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationBundleId" />
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnOpenApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:background="@null"
+                android:onClick="@{() -> viewHolder.onLaunchApplicationClick()}"
+                app:layout_constraintEnd_toStartOf="@+id/btnAppInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationVersionCode"
+                app:srcCompat="@drawable/ic_launch_black" />
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/appIconView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@{viewHolder.appIconDrawable}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnAppInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="@{() -> viewHolder.onAppSettingClick()}"
+                app:layout_constraintEnd_toStartOf="@+id/btnCopiedToClip"
+                app:layout_constraintStart_toEndOf="@+id/btnOpenApp"
+                app:layout_constraintTop_toTopOf="@+id/btnOpenApp"
+                app:srcCompat="@drawable/ic_info_black" />
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnCopiedToClip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="@{() -> viewHolder.onCopyApplicationDetailClick()}"
+                app:layout_constraintEnd_toStartOf="@+id/btnShareApp"
+                app:layout_constraintStart_toEndOf="@+id/btnAppInfo"
+                app:layout_constraintTop_toTopOf="@+id/btnOpenApp"
+                app:srcCompat="@drawable/ic_content_copy_black" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblApplicationName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.appName}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/appIconView" />
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnShareApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:onClick="@{() -> viewHolder.onAppShareClick()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btnCopiedToClip"
+                app:layout_constraintTop_toTopOf="@+id/btnOpenApp"
+                app:srcCompat="@drawable/ic_share_black" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblApplicationBundleId"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.applicationInfo.packageName}"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationName" />
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/lblApplicationVersionCode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.appVersionName}"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationBundleId" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_normal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInfo">
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnOpenApp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_small"
-                        android:background="@null"
-                        android:onClick="@{() -> viewHolder.onLaunchApplicationClick()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnAppInfo"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_launch_black" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnAppInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_small"
-                        android:background="@null"
-                        android:onClick="@{() -> viewHolder.onAppSettingClick()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnCopiedToClip"
-                        app:layout_constraintStart_toEndOf="@+id/btnOpenApp"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_info_black" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnCopiedToClip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_small"
-                        android:background="@null"
-                        android:onClick="@{() -> viewHolder.onCopyApplicationDetailClick()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/btnShareApp"
-                        app:layout_constraintStart_toEndOf="@+id/btnAppInfo"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_content_copy_black" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnShareApp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_small"
-                        android:background="@null"
-                        android:onClick="@{() -> viewHolder.onAppShareClick()}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/btnCopiedToClip"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_share_black" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="@dimen/margin_large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topViewLayout">
+                app:layout_constraintTop_toBottomOf="@+id/btnOpenApp">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/lblProperties"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -172,7 +144,7 @@
 
                     >
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/_lblApplicationVersionName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -181,7 +153,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationVersionName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -202,7 +174,7 @@
 
                     >
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/_lblApplicationSDK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -211,7 +183,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationMinSDK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -220,7 +192,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/lblApplicationTargetSDK" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationTargetSDK"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -238,7 +210,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSDK">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/_lblApplicationSignature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -247,7 +219,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationSignature"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -265,7 +237,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSignature">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationInstallTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -274,7 +246,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblAppInstallTime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -283,7 +255,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallTime" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationUpdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -302,7 +274,7 @@
 
                     >
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/_lblApplicationInstallerPackage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -311,7 +283,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblApplicationInstallerPackage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -322,7 +294,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/lblMoreInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -340,7 +312,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lblMoreInfo">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblMetaData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -369,7 +341,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppMetaData">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblAppPermission"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -398,7 +370,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppPermission">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblAppActivities"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -427,7 +399,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppActivities">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblAppProvider"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -456,7 +428,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppProviders">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblAppReceivers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -485,7 +457,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppReceivers">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblDirectories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -514,7 +486,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppDirectories">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblShareLibraries"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -543,7 +515,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppSharedLibraries">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblNativeLibraries"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -572,7 +544,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/layoutAppNativeLibraries">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/lblOtherProperties"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
