@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
@@ -15,6 +16,7 @@ import com.warlox.apkextractor.ui.appList.adapter.ApplicationListAdapter
 import com.warlox.apkextractor.ui.base.BaseActivity
 import com.warlox.apkextractor.ui.setting.SettingActivity
 import javax.inject.Inject
+
 
 class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel>(),
         ApplicationRecycleViewItemClick {
@@ -46,6 +48,8 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
     private fun setUpAdapter() {
         binding.applicationList.apply {
             layoutManager = LinearLayoutManager(this@AppsListActivity)
+            addItemDecoration(DividerItemDecoration(this@AppsListActivity,
+                    DividerItemDecoration.VERTICAL))
             adapter = applicationListAdapter
         }
         viewModel.applicationModelList.observe(this, {

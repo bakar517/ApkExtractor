@@ -18,12 +18,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{()-> listener.onItemClick(applicationModel)}"
-        app:cardBackgroundColor="@color/color_lynx_white">
+        app:cardBackgroundColor="@color/color_lynx_white"
+        app:cardCornerRadius="@dimen/_16sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_normal">
+            android:layout_margin="@dimen/margin_small">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/appIconView"
@@ -34,11 +35,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/appNameView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/padding_normal"
+                android:layout_marginStart="@dimen/padding_normal"
                 android:text="@{applicationModel.appName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintBottom_toBottomOf="@+id/appIconView"
