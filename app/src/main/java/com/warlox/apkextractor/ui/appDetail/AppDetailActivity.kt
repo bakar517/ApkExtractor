@@ -4,8 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.widget.Toast
-import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModelProvider
 import com.warlox.apkextractor.BR
 import com.warlox.apkextractor.R
@@ -13,8 +11,7 @@ import com.warlox.apkextractor.databinding.ActivityAppDetailBinding
 import com.warlox.apkextractor.ui.appDetail.di.ExtraParamsViewModelFactory
 import com.warlox.apkextractor.ui.base.BaseActivity
 import com.warlox.apkextractor.util.ApplicationUtil
-import com.warlox.apkextractor.util.ClipBoardManager
-import com.warlox.apkextractor.util.StringUtil
+import com.warlox.apkextractor.util.extension.copyTextToClip
 
 
 class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewModel>() {
@@ -61,8 +58,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
         })
         viewModel.copyToClipboard.observe(this, {
             val value = ApplicationUtil.getApplicationInfoForClip(applicationContext, viewModel.applicationInfo)
-            ClipBoardManager.copyToClipboard(applicationContext, value)
-            showToast(R.string.copied_to_clipboard)
+            copyTextToClip(value, showToast = true)
         })
 
         viewModel.shareApplication.observe(this, {
@@ -70,13 +66,4 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
         })
 
     }
-
-    private fun showToast(@StringRes id: Int) {
-        showToast(StringUtil.getStringFromRes(applicationContext, id))
-    }
-
-    private fun showToast(text: String) {
-        Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT).show()
-    }
-
 }

@@ -8,6 +8,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.WindowManager
 import android.widget.Toast
+import com.warlox.apkextractor.R
 import com.warlox.apkextractor.util.IntentParams
 
 
@@ -38,10 +39,13 @@ fun Activity.browse(link: String) {
     startActivity(intent)
 }
 
-fun Activity.copyTextToClip(text: String) {
+fun Activity.copyTextToClip(text: String, showToast: Boolean = false) {
     val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     val clip = ClipData.newPlainText("", text)
     clipboard.setPrimaryClip(clip)
+    if (showToast) {
+        toast(getString(R.string.copied_to_clipboard))
+    }
 }
 
 fun Activity.toast(message: String) = Toast.makeText(this.applicationContext,
