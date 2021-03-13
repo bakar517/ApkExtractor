@@ -57,7 +57,7 @@ class AppsListActivity : BaseActivity<ActivityAppsListBinding, AppsListViewModel
             if (it) {
                 binding.shimmerFrameLayout.startShimmer()
             } else {
-                binding.shimmerFrameLayout.startShimmer()
+                binding.shimmerFrameLayout.stopShimmer()
             }
         })
 
