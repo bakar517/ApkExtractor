@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.ui.activities.HomeScreenActivity"
+            android:name=".ui.appList.AppsListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -22,11 +22,11 @@
         </activity>
 
         <activity
-            android:name=".view.ui.activities.SettingScreenActivity"
+            android:name=".ui.setting.SettingActivity"
             android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".view.ui.activities.AppDetailActivity"
+            android:name=".ui.appDetail.AppDetailActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>

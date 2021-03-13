@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewHolder"
-            type="com.warlox.apkextractor.view.viewmodel.AppDetailViewModel" />
+            type="com.warlox.apkextractor.ui.appDetail.AppDetailViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

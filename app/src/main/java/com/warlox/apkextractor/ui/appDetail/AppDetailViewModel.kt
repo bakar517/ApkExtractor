@@ -1,30 +1,30 @@
-package com.warlox.apkextractor.view.viewmodel
+package com.warlox.apkextractor.ui.appDetail
 
-import android.app.Application
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.warlox.apkextractor.util.ApplicationUtil
 import com.warlox.apkextractor.util.DateTimeUtil
 import java.io.File
+import javax.inject.Inject
 
 
-class AppDetailViewModel(application: Application, val applicationInfo:ApplicationInfo) : AndroidViewModel(application) {
+class AppDetailViewModel @Inject constructor(
+        private val packageManager: PackageManager,
+        private val packageName: String) : ViewModel() {
 
-
-    private val packageManager = application.applicationContext.packageManager
+    val applicationInfo = packageManager.getApplicationInfo(packageName, 0)
 
     private val _lastModificationTimeOfApp = MutableLiveData<String>()
-    val lastModificationTimeOfApp:LiveData<String>
+    val lastModificationTimeOfApp: LiveData<String>
         get() = _lastModificationTimeOfApp
 
     private val _appInstallationTime = MutableLiveData<String>()
-    val appInstallationTime :LiveData<String>
+    val appInstallationTime: LiveData<String>
         get() = _appInstallationTime
 
     private val _appIconDrawable = MutableLiveData<Drawable>()
@@ -143,17 +143,18 @@ class AppDetailViewModel(application: Application, val applicationInfo:Applicati
 
     }
 
-    private fun loadSDKInfoOfApp(){
+    private fun loadSDKInfoOfApp() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             _appMinVersion.value = applicationInfo.minSdkVersion.toString()
-        };
-        _appTargetVersion.value = applicationInfo.targetSdkVersion.toString();
+        }
+        _appTargetVersion.value = applicationInfo.targetSdkVersion.toString()
     }
+
     private fun loadSignatureInfoOfApp() {
         val packageInfo = ApplicationUtil.getPackageInfo(packageManager, applicationInfo.packageName,
-            PackageManager.GET_SIGNATURES)
+                PackageManager.GET_SIGNATURES)
 
-            _appInstallationTime.value = DateTimeUtil.getFormattedTime(packageInfo!!.firstInstallTime)
+        _appInstallationTime.value = DateTimeUtil.getFormattedTime(packageInfo!!.firstInstallTime)
             _lastModificationTimeOfApp.value = DateTimeUtil.getFormattedTime(packageInfo.lastUpdateTime)
 
     }
@@ -164,7 +165,7 @@ class AppDetailViewModel(application: Application, val applicationInfo:Applicati
         val metaDataList = mutableListOf<String>()
         metaData?.let { bundle ->
             for (key in bundle.keySet()) {
-                val value = bundle.get(key);
+                val value = bundle.get(key)
                 value?.let {
                     metaDataList.add(it.toString())
                 }

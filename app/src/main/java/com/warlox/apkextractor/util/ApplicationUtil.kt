@@ -8,17 +8,15 @@ import android.os.Build
 import androidx.core.content.pm.PackageInfoCompat
 import com.warlox.apkextractor.R
 import com.warlox.apkextractor.data.model.ApplicationModel
-import io.reactivex.rxjava3.core.Observable
-import java.lang.StringBuilder
 
 class ApplicationUtil private constructor() {
     companion object {
 
-        fun getListOfUserInstalledApplication(context: Context): Observable<List<ApplicationModel>>{
+        fun getListOfUserInstalledApplication(context: Context): List<ApplicationModel> {
             return getAllApplicationList(context, false)
         }
 
-        private fun getAllApplicationList(context: Context, includeSystemApps:Boolean): Observable<List<ApplicationModel>> {
+        private fun getAllApplicationList(context: Context, includeSystemApps: Boolean): List<ApplicationModel> {
 
             val list = mutableListOf<ApplicationModel>()
             val packageManager = context.packageManager
@@ -27,7 +25,7 @@ class ApplicationUtil private constructor() {
             for (packageInfo in installedPackages) {
                 try {
                     val applicationInfo: ApplicationInfo? = packageInfo.applicationInfo
-                    if (applicationInfo != null){
+                    if (applicationInfo != null) {
                         val isSystemApp = applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM !== 0
                         if (!includeSystemApps and isSystemApp){
                             continue
@@ -44,15 +42,15 @@ class ApplicationUtil private constructor() {
                         }
 
                         val application = ApplicationModel(appName, packageName, icon,
-                            versionName,versionCode ,
-                            isSystemApp)
+                                versionName, versionCode,
+                                isSystemApp)
                         list.add(application)
                     }
                 } catch (nameMissing: PackageManager.NameNotFoundException) {
                     nameMissing.printStackTrace()
                 }
             }
-            return Observable.just(list)
+            return list
         }
 
         fun getPackageInfo(packageManager: PackageManager, packageName:String, flag:Int): PackageInfo? {

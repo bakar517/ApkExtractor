@@ -1,4 +1,4 @@
-package com.warlox.apkextractor.view.adapter
+package com.warlox.apkextractor.ui.appList.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.warlox.apkextractor.R
 import com.warlox.apkextractor.data.model.ApplicationModel
 import com.warlox.apkextractor.databinding.ViewListApplicationBinding
+import com.warlox.apkextractor.ui.appList.ApplicationRecycleViewItemClick
 import com.warlox.apkextractor.util.ApplicationListDiffUtil
-import com.warlox.apkextractor.view.callback.ApplicationRecycleViewItemClick
 
 class ApplicationListAdapter(val itemClickListener: ApplicationRecycleViewItemClick): RecyclerView.Adapter<ApplicationListAdapter.ViewHolder>() {
 
@@ -41,7 +41,7 @@ class ApplicationListAdapter(val itemClickListener: ApplicationRecycleViewItemCl
 
 
     inner class ViewHolder(private val _itemView: ViewListApplicationBinding) :RecyclerView.ViewHolder(_itemView.root){
-        fun bindData(model: ApplicationModel, itemClickListener:ApplicationRecycleViewItemClick){
+        fun bindData(model: ApplicationModel, itemClickListener: ApplicationRecycleViewItemClick) {
             _itemView.applicationModel = model
             _itemView.executePendingBindings()
             _itemView.root.setOnClickListener { itemClickListener.onApplicationListItemClick(model) }
