@@ -3,13 +3,15 @@ package com.warlox.apkextractor.ui.appDetail
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.warlox.apkextractor.ui.SingleMutableLiveEvent
 import com.warlox.apkextractor.util.ApplicationUtil
-import com.warlox.apkextractor.util.DateTimeUtil
+import com.warlox.apkextractor.util.DEFAULT_DATE_TIME_FORMAT
+import com.warlox.apkextractor.util.extension.toThisFormat
 import java.io.File
+import java.util.*
 import javax.inject.Inject
 
 
@@ -89,29 +91,23 @@ class AppDetailViewModel @Inject constructor(
         get() = _appSharedLibraries
 
     private val _appNativeLibraries = MutableLiveData<MutableList<String>>()
-    val appNativeLibraries:LiveData<MutableList<String>>
+    val appNativeLibraries: LiveData<MutableList<String>>
         get() = _appNativeLibraries
 
     private val _appOtherProperties = MutableLiveData<MutableList<String>>()
-    val appOtherProperties:LiveData<MutableList<String>>
+    val appOtherProperties: LiveData<MutableList<String>>
         get() = _appOtherProperties
 
-    private val _launchApplication = MutableLiveData<Boolean>()
-    val launchApplication:LiveData<Boolean>
-        get() = _launchApplication
+    private val onCopyToClipboard = SingleMutableLiveEvent<Boolean>()
+    private val onLaunchApplication = SingleMutableLiveEvent<Boolean>()
+    private val goToAppSetting = SingleMutableLiveEvent<Boolean>()
+    private val onAppShare = SingleMutableLiveEvent<Boolean>()
 
-    private val _goToAppSetting = MutableLiveData<Boolean>()
-    val goToAppSetting:LiveData<Boolean>
-        get() = _goToAppSetting
 
-    private val _copyToClipboard = MutableLiveData<Boolean>()
-    val copyToClipboard:LiveData<Boolean>
-        get() = _copyToClipboard
-
-    private val _shareApplication = MutableLiveData<Boolean>()
-    val shareApplication:LiveData<Boolean>
-        get() = _shareApplication
-
+    internal fun onCopyToClipboardClick() = onCopyToClipboard
+    internal fun onLaunchApplication() = onLaunchApplication
+    internal fun onGoToAppSetting() = goToAppSetting
+    internal fun onShareClick() = onAppShare
 
     init {
         loadBasicPropertiesOfApp()
@@ -139,7 +135,6 @@ class AppDetailViewModel @Inject constructor(
         _appVersionCode.value = ApplicationUtil.getAppVersionCode(packageInfo).toString()
         val installVendor = packageManager.getInstallerPackageName(applicationInfo.packageName)
         installVendor?.let { _appInstallerVendor.value = it }
-        Log.v("installer_tag","getInstallerPackageName ${packageManager.getInstallerPackageName(applicationInfo.packageName)}")
 
     }
 
@@ -154,8 +149,8 @@ class AppDetailViewModel @Inject constructor(
         val packageInfo = ApplicationUtil.getPackageInfo(packageManager, applicationInfo.packageName,
                 PackageManager.GET_SIGNATURES)
 
-        _appInstallationTime.value = DateTimeUtil.getFormattedTime(packageInfo!!.firstInstallTime)
-            _lastModificationTimeOfApp.value = DateTimeUtil.getFormattedTime(packageInfo.lastUpdateTime)
+        _appInstallationTime.value = Date(packageInfo!!.firstInstallTime).toThisFormat(DEFAULT_DATE_TIME_FORMAT)
+        _lastModificationTimeOfApp.value = Date(packageInfo.lastUpdateTime).toThisFormat(DEFAULT_DATE_TIME_FORMAT)
 
     }
 
@@ -169,7 +164,6 @@ class AppDetailViewModel @Inject constructor(
                 value?.let {
                     metaDataList.add(it.toString())
                 }
-                Log.v("meta_data_tag", key + " : " + if (bundle.get(key) != null) bundle.get(key) else "NULL")
             }
             _appMetaData.value = metaDataList
         }
@@ -181,7 +175,6 @@ class AppDetailViewModel @Inject constructor(
             val permissionList = mutableListOf<String>()
             if (!it.requestedPermissions.isNullOrEmpty()){
                 for (permission in it.requestedPermissions){
-                    Log.v("permission_logs","permission => $permission")
                     permissionList.add(permission)
                 }
             }
@@ -252,54 +245,43 @@ class AppDetailViewModel @Inject constructor(
     }
 
     private fun loadAllNativeLibrariesOfApp(){
-        Log.v("native_lib_log","path => ${applicationInfo.nativeLibraryDir}")
         val nativeLibraryPath = File(applicationInfo.nativeLibraryDir)
         nativeLibraryPath.let {
             if (nativeLibraryPath.exists()){
                 val list = nativeLibraryPath.listFiles()
                 val listOfNativeLibraries = mutableListOf<String>()
                 if (!list.isNullOrEmpty()){
-                    Log.v("native_lib_log","list => ${list.size}")
                     for (file in list){
-                        Log.v("native_lib_log","file name => ${file.name}")
-                        Log.v("native_lib_log","file path => ${file.path}")
-                        Log.v("native_lib_log","file absolutePath => ${file.absolutePath}")
                         listOfNativeLibraries.add(file.absolutePath)
                     }
-                }else{
-                    Log.v("native_lib_log","list is null")
-
                 }
                 _appNativeLibraries.value = listOfNativeLibraries
-            }else{
-                Log.v("native_lib_log","native lib file not exist")
             }
-
         }
     }
 
-    private fun loadAllOtherPropertiesOfApp(){
+    private fun loadAllOtherPropertiesOfApp() {
         val isLargeHeap = ApplicationUtil.isLargeHeap(applicationInfo)
         val isHardwareAccelerated = ApplicationUtil.isHardwareAccelerated(applicationInfo)
         val isBackupAllowed = ApplicationUtil.isBackupAllowed(applicationInfo)
         val isRLTSupport = ApplicationUtil.isRLTSupport(applicationInfo)
     }
 
-    fun launchApplication(){
-        _launchApplication.value = true
+    fun onLaunchApplicationClick() {
+        onLaunchApplication.value = true
     }
 
-    fun goToAppSetting(){
-        _goToAppSetting.value = true
+    fun onAppSettingClick() {
+        goToAppSetting.value = true
 
     }
 
-    fun copyApplicationDetail(){
-        _copyToClipboard.value = true
+    fun onCopyApplicationDetailClick() {
+        onCopyToClipboard.value = true
     }
 
-    fun shareApplication(){
-        _shareApplication.value = true
+    fun onAppShareClick() {
+        onAppShare.value = true
 
     }
 }

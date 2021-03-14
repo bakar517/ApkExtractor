@@ -88,22 +88,25 @@ class ApplicationUtil private constructor() {
             return applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
         }
 
-        internal fun getApplicationInfoForClip(context: Context, applicationInfo: ApplicationInfo):String{
-            val builder = StringBuilder()
+        fun isSystemApp(applicationInfo: ApplicationInfo): Boolean {
+            return applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0
+        }
+
+        internal fun getApplicationInfoForClip(context: Context, applicationInfo: ApplicationInfo): String {
             val _applicationName = getAppName(context.packageManager, applicationInfo)
-            val applicationName = StringUtil.getStringFromRes(context, R.string.name)+": "+_applicationName
-            StringUtil.appendWithNewLine(builder, applicationName)
-            val applicationPackage = StringUtil.getStringFromRes(context, R.string._package)+": "+applicationInfo.packageName
-            StringUtil.appendWithNewLine(builder, applicationPackage)
+            val applicationName = getStringFromRes(context, R.string.name) + ": " + _applicationName
+
+            val applicationPackage = getStringFromRes(context, R.string._package) + ": " + applicationInfo.packageName
 
             val packageInfo = getPackageInfo(context.packageManager, applicationInfo.packageName, PackageManager.GET_META_DATA)
-            val applicationVersionName = StringUtil.getStringFromRes(context, R.string.version_name)+": "+packageInfo!!.versionName
-            StringUtil.appendWithNewLine(builder, applicationVersionName)
+            val applicationVersionName = getStringFromRes(context, R.string.version_name) + ": " + packageInfo!!.versionName
 
             val _applicationVersionCode = getAppVersionCode(packageInfo)
-            val applicationVersionCode = StringUtil.getStringFromRes(context, R.string.version_code)+": "+_applicationVersionCode
-            StringUtil.appendWithNewLine(builder, applicationVersionCode)
-            return builder.toString()
+            val applicationVersionCode = getStringFromRes(context, R.string.version_code) + ": " + _applicationVersionCode
+
+            return applicationName.plus("\n").plus(applicationPackage).plus("\n")
+                    .plus(applicationVersionName).plus("\n").plus(applicationVersionCode)
+
         }
 
     }

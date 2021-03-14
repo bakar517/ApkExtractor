@@ -7,6 +7,7 @@
 
     <dimen name="margin_normal">@dimen/_16sdp</dimen>
     <dimen name="margin_small">@dimen/_8sdp</dimen>
+    <dimen name="margin_micro">@dimen/_4sdp</dimen>
     <dimen name="margin_large">@dimen/_32sdp</dimen>
 
     <dimen name="application_icon_width">48dp</dimen>
