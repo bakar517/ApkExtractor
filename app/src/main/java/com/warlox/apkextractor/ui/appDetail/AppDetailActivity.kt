@@ -18,9 +18,7 @@ class AppDetailActivity : BaseActivity<ActivityAppDetailBinding, AppDetailViewMo
         const val EXTRAS_PACKAGE_NAME = "package_name"
     }
 
-
     private lateinit var viewModel: AppDetailViewModel
-
 
     override fun getLayoutId() = R.layout.activity_app_detail
 
