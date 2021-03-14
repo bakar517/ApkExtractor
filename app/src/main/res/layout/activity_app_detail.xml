@@ -25,6 +25,7 @@
                 android:id="@+id/appIconView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_8sdp"
                 android:src="@{viewHolder.appIconDrawable}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,10 @@
                 android:id="@+id/isSystemOrDebugApp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:padding="@dimen/_2sdp"
+                android:text="@string/system"
+                android:textSize="@dimen/_8sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/appIconView"
                 app:layout_constraintEnd_toEndOf="@+id/appIconView" />
 
