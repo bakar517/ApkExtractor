@@ -8,8 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.warlox.apkextractor.ui.SingleMutableLiveEvent
 import com.warlox.apkextractor.util.ApplicationUtil
-import com.warlox.apkextractor.util.DateTimeUtil
+import com.warlox.apkextractor.util.DEFAULT_DATE_TIME_FORMAT
+import com.warlox.apkextractor.util.extension.toThisFormat
 import java.io.File
+import java.util.*
 import javax.inject.Inject
 
 
@@ -147,8 +149,8 @@ class AppDetailViewModel @Inject constructor(
         val packageInfo = ApplicationUtil.getPackageInfo(packageManager, applicationInfo.packageName,
                 PackageManager.GET_SIGNATURES)
 
-        _appInstallationTime.value = DateTimeUtil.getFormattedTime(packageInfo!!.firstInstallTime)
-            _lastModificationTimeOfApp.value = DateTimeUtil.getFormattedTime(packageInfo.lastUpdateTime)
+        _appInstallationTime.value = Date(packageInfo!!.firstInstallTime).toThisFormat(DEFAULT_DATE_TIME_FORMAT)
+        _lastModificationTimeOfApp.value = Date(packageInfo.lastUpdateTime).toThisFormat(DEFAULT_DATE_TIME_FORMAT)
 
     }
 
