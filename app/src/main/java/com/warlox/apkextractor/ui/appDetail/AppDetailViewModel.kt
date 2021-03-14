@@ -3,7 +3,6 @@ package com.warlox.apkextractor.ui.appDetail
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -134,7 +133,6 @@ class AppDetailViewModel @Inject constructor(
         _appVersionCode.value = ApplicationUtil.getAppVersionCode(packageInfo).toString()
         val installVendor = packageManager.getInstallerPackageName(applicationInfo.packageName)
         installVendor?.let { _appInstallerVendor.value = it }
-        Log.v("installer_tag","getInstallerPackageName ${packageManager.getInstallerPackageName(applicationInfo.packageName)}")
 
     }
 
@@ -164,7 +162,6 @@ class AppDetailViewModel @Inject constructor(
                 value?.let {
                     metaDataList.add(it.toString())
                 }
-                Log.v("meta_data_tag", key + " : " + if (bundle.get(key) != null) bundle.get(key) else "NULL")
             }
             _appMetaData.value = metaDataList
         }
@@ -176,7 +173,6 @@ class AppDetailViewModel @Inject constructor(
             val permissionList = mutableListOf<String>()
             if (!it.requestedPermissions.isNullOrEmpty()){
                 for (permission in it.requestedPermissions){
-                    Log.v("permission_logs","permission => $permission")
                     permissionList.add(permission)
                 }
             }
@@ -247,29 +243,18 @@ class AppDetailViewModel @Inject constructor(
     }
 
     private fun loadAllNativeLibrariesOfApp(){
-        Log.v("native_lib_log","path => ${applicationInfo.nativeLibraryDir}")
         val nativeLibraryPath = File(applicationInfo.nativeLibraryDir)
         nativeLibraryPath.let {
             if (nativeLibraryPath.exists()){
                 val list = nativeLibraryPath.listFiles()
                 val listOfNativeLibraries = mutableListOf<String>()
                 if (!list.isNullOrEmpty()){
-                    Log.v("native_lib_log","list => ${list.size}")
                     for (file in list){
-                        Log.v("native_lib_log","file name => ${file.name}")
-                        Log.v("native_lib_log","file path => ${file.path}")
-                        Log.v("native_lib_log","file absolutePath => ${file.absolutePath}")
                         listOfNativeLibraries.add(file.absolutePath)
                     }
-                }else{
-                    Log.v("native_lib_log","list is null")
-
                 }
                 _appNativeLibraries.value = listOfNativeLibraries
-            }else{
-                Log.v("native_lib_log","native lib file not exist")
             }
-
         }
     }
 
