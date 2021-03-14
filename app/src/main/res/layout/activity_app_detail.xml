@@ -117,455 +117,363 @@
                 app:layout_constraintTop_toTopOf="@+id/btnOpenApp"
                 app:srcCompat="@drawable/ic_share_black" />
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblProperties"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/properties"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnOpenApp">
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/lblProperties"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:text="@string/properties"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationVersionCode"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lblProperties"
-
-                    >
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/_lblApplicationVersionName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/version_code"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationVersionName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.appVersionCode}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationVersionName" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationSDK"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationVersionCode"
-
-                    >
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/_lblApplicationSDK"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/sdk"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationMinSDK"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{@string/min + viewHolder.appMinVersion+`, `}"
-                        android:visibility="visible"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblApplicationTargetSDK" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationTargetSDK"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{@string/target+viewHolder.appTargetVersion}"
-                        app:layout_constraintStart_toEndOf="@+id/lblApplicationMinSDK"
-                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSDK" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationSignature"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSDK">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/_lblApplicationSignature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/signature"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationSignature"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.appSignature}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSignature" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationSignature">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationInstallTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/time"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblAppInstallTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{@string/install_colon + viewHolder.appInstallationTime}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallTime" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationUpdate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@{@string/update_colon + viewHolder.lastModificationTimeOfApp}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/lblAppInstallTime" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutApplicationInstallerPackage"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationTime"
-
-                    >
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/_lblApplicationInstallerPackage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/installer_package"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblApplicationInstallerPackage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_small"
-                        android:text="@{viewHolder.appInstallerVendor}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/_lblApplicationInstallerPackage" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/lblMoreInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:text="@string/more_info"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutApplicationInstallerPackage" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppMetaData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appMetaData.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/lblMoreInfo">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblMetaData"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/meta_data +` (`+viewHolder.appMetaData.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnMetaDataMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblMetaData"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblMetaData" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppPermission"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appPermissions.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppMetaData">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblAppPermission"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/permissions +` (`+viewHolder.appPermissions.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnPermissionMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblAppPermission"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblAppPermission" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppActivities"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appActivities.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppPermission">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblAppActivities"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/activities +` (`+viewHolder.appActivities.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnActivitiesMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblAppActivities"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblAppActivities" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppProviders"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appProviders.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppActivities">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblAppProvider"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/providers +` (`+viewHolder.appProviders.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnProviderMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblAppProvider"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblAppProvider" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppReceivers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appReceivers.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppProviders">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblAppReceivers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/receivers +` (`+viewHolder.appReceivers.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnAppReceiverMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblAppReceivers"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblAppReceivers" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppDirectories"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appDirectories.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppReceivers">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblDirectories"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/directories +` (`+viewHolder.appDirectories.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnDirectoriesMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblDirectories"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblDirectories" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppSharedLibraries"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appSharedLibraries.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppDirectories">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblShareLibraries"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/shared_libraries +` (`+viewHolder.appSharedLibraries.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnShareLibrariesMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblShareLibraries"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblShareLibraries" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppNativeLibraries"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="@{viewHolder.appNativeLibraries.size()>0?View.VISIBLE:View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppSharedLibraries">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblNativeLibraries"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@{@string/native_libraries +` (`+viewHolder.appNativeLibraries.size()+`)`}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnNativeLibraryMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblNativeLibraries"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblNativeLibraries" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutAppOtherProperties"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_normal"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutAppNativeLibraries">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/lblOtherProperties"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_normal"
-                        android:text="@string/other_properties"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatImageButton
-                        android:id="@+id/btnOtherPropertiesMore"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_next_black"
-                        app:layout_constraintBottom_toBottomOf="@+id/lblOtherProperties"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/lblOtherProperties" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                app:layout_constraintTop_toBottomOf="@+id/btnOpenApp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/_lblApplicationVersionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/version_code"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblProperties" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationVersionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewHolder.appVersionCode}"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/_lblApplicationVersionName" />
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/_lblApplicationSDK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/sdk"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationVersionName" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationMinSDK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/min + viewHolder.appMinVersion+`, `}"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSDK" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationTargetSDK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/target+viewHolder.appTargetVersion}"
+                app:layout_constraintStart_toEndOf="@+id/lblApplicationMinSDK"
+                app:layout_constraintTop_toTopOf="@+id/lblApplicationMinSDK" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/_lblApplicationSignature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/signature"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationTargetSDK" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationSignature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewHolder.appSignature}"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/_lblApplicationSignature" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationInstallTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/time"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationSignature" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblAppInstallTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/install_colon + viewHolder.appInstallationTime}"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallTime" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/update_colon + viewHolder.lastModificationTimeOfApp}"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblAppInstallTime" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/_lblApplicationInstallerPackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/installer_package"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationUpdate" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblApplicationInstallerPackage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewHolder.appInstallerVendor}"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/_lblApplicationInstallerPackage" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblMoreInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/more_info"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintStart_toStartOf="@+id/lblProperties"
+                app:layout_constraintTop_toBottomOf="@+id/lblApplicationInstallerPackage" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/metaDataGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appMetaData.size() > 0 ? View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblMetaData,btnMetaDataMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblMetaData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/meta_data +` (`+viewHolder.appMetaData.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblMoreInfo" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnMetaDataMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblMetaData"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblMetaData" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/permissionGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appPermissions.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblAppPermission,btnPermissionMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblAppPermission"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/permissions +` (`+viewHolder.appPermissions.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblMetaData" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnPermissionMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblAppPermission"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblAppPermission" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/activitiesGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appActivities.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblAppActivities,btnActivitiesMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblAppActivities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/activities +` (`+viewHolder.appActivities.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblAppPermission" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnActivitiesMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblAppActivities"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblAppActivities" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appProvidersGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appProviders.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblAppProvider,btnProviderMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblAppProvider"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/providers +` (`+viewHolder.appProviders.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblAppActivities" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnProviderMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblAppProvider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblAppProvider" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appReceiversGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appReceivers.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblAppReceivers,btnAppReceiverMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblAppReceivers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/receivers +` (`+viewHolder.appReceivers.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblAppProvider" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnAppReceiverMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblAppReceivers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblAppReceivers" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appDirectoriesGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appDirectories.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblDirectories,btnDirectoriesMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblDirectories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/directories +` (`+viewHolder.appDirectories.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblAppReceivers" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnDirectoriesMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblDirectories"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblDirectories" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appSharedLibrariesGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appSharedLibraries.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblShareLibraries,btnShareLibrariesMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblShareLibraries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/shared_libraries +` (`+viewHolder.appSharedLibraries.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblDirectories" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnShareLibrariesMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblShareLibraries"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblShareLibraries" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appNativeLibraries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{viewHolder.appNativeLibraries.size()>0?View.VISIBLE:View.GONE}"
+                app:constraint_referenced_ids="lblDirectories,btnNativeLibraryMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblNativeLibraries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@{@string/native_libraries +` (`+viewHolder.appNativeLibraries.size()+`)`}"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblShareLibraries" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnNativeLibraryMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblNativeLibraries"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblNativeLibraries" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/appOtherProperties"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="lblOtherProperties,btnOtherPropertiesMore" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/lblOtherProperties"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:text="@string/other_properties"
+                app:layout_constraintStart_toStartOf="@+id/lblMoreInfo"
+                app:layout_constraintTop_toBottomOf="@+id/lblNativeLibraries" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btnOtherPropertiesMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:src="@drawable/ic_next_black"
+                app:layout_constraintBottom_toBottomOf="@+id/lblOtherProperties"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/lblOtherProperties" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
